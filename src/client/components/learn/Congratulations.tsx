@@ -4,6 +4,7 @@ import { play } from "@client/support/play.js";
 import sleep from "@shared/support/promises/sleep.js";
 import { useNavigate } from "react-router";
 import "@sass/components/learn/Congratulations.sass";
+import capitalize from "@shared/support/strings/capitalize.js";
 
 export default function Congratulations() {
     const navigate = useNavigate();
@@ -72,7 +73,7 @@ export default function Congratulations() {
                 <div id="row-completed-text-container">
                     <span id="row-completed-title">Congratulations</span>
                     <span id="row-completed-subtitle">
-                        You've finished the row "{alphabet} {row.name}"!
+                        You've finished the row "{capitalize(alphabet)} {row.name}"!
                     </span>
                 </div>
             </div>
