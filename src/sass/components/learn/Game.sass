@@ -30,8 +30,8 @@
     justify-content: center
 
 #exit-button
-    width: 12px
-    margin-right: 24px
+    width: 1rem
+    margin-inline-end: 2rem
     cursor: pointer
 
 #game-progress-bar
@@ -135,6 +135,17 @@
         opacity: 1
     to
         opacity: 0
+
+@keyframes game-completed
+    from
+        opacity: 1
+        transform: scale(1)
+    50%
+        opacity: 0.5
+        transform: scale(0.98)
+    to
+        opacity: 0
+        transform: scale(1.15)
 
 
 @media screen and (max-width: 580px)

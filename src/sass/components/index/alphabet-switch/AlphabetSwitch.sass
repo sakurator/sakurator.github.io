@@ -1,15 +1,21 @@
 @use 'sass:color'
+@use 'sass:math'
 @use 'colors'
 @use 'ease'
 
 
+$backfire: 1rem
+$squash: 1.03
+$height-fix: 1%
+$duration: 500ms
+
 @keyframes alphabet-switch-panel__bounce-left
     10%
-        transform: translateX(-1.5rem) scaleY(0.90) scaleX(1.15) translateY(2.5%)
+        transform: translateX(-$backfire) scaleX($squash) scaleY(math.div(1, $squash)) translateY($height-fix)
 
 @keyframes alphabet-switch-panel__bounce-right
     10%
-        transform: translateX(+1.5rem) scaleY(0.90) scaleX(1.15) translateY(2.5%)
+        transform: translateX(+$backfire) scaleX($squash) scaleY(math.div(1, $squash)) translateY($height-fix)
 
 @keyframes alphabet-switch-slider__squish-a
     20%
@@ -66,7 +72,7 @@
     position: absolute
     inset: 0
     background: colors.$sakura
-    transition: 200ms ease.$ease-bouncy
+    transition: $duration ease.$ease-bouncy
     border-radius: 999lvmax
     &:before
         content: ""
@@ -76,14 +82,14 @@
         width: 1em
         left: 0.5em
         bottom: 0.5em
-        transition: 200ms ease.$ease-bouncy
+        transition: $duration ease.$ease-bouncy
         border-radius: 100%
 
 .alphabet-switch-title
-    font-size: 1.5em
+    font-size: 2em
     color: white
-    opacity: 0.1
-    transition: 200ms ease.$ease-bouncy
+    opacity: 0.5
+    transition: $duration * 2 ease.$ease-bouncy
     font-weight: 1000
     &.enabled
         opacity: 1

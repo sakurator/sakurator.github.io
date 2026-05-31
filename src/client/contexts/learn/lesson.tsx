@@ -15,7 +15,7 @@ import { useParams } from "react-router";
 const LessonContext = createContext<Lesson | undefined>(undefined);
 
 export type LessonContextProviderProps = WithChildren<{}>;
-export type LessonState = 'introducing letters' | 'learning letters' | 'showing results';
+export type LessonState = 'introducing letters' | 'learning letters' | 'showing results' | 'showing congratulations';
 
 export type Lesson =
     {
@@ -27,6 +27,10 @@ export type Lesson =
         wasCompleted: boolean;
         particle: string;
         needsIntroduction: boolean;
+        row: APIRow;
+        completed: boolean;
+        points: number;
+        setPoints: (points: number) => void;
         start: () => void;
         check: (letter: string) => void;
     } &
@@ -35,7 +39,8 @@ export type Lesson =
     WithState<number, 'progressPoints'> &
     WithState<boolean, 'flawless'> &
     WithState<APILetter, 'correctLetter'> &
-    WithState<APILetter[], 'options'>;
+    WithState<APILetter[], 'options'> &
+    WithState<number, 'award'>;
 
 
 export function useLessonContext(): Lesson {
@@ -57,9 +62,10 @@ function LessonContextProvider$Initializer({ row, alphabet, letters, children }:
     const [flawless, setFlawless] = useState<boolean>(true);
     const [wasCompleted] = useState(() => completed);
     const [options, setOptions] = useState<APILetter[]>([]);
+    const [award, setAward] = useState<number>(2);
     const maxCombo = 9;
     const optionCount = 4;
-    const goal = 500;
+    const goal = 21;
     const percent = progressPoints / goal * 100;
     const goalReached = percent >= 100;
     const particle = getAlphabetParticleName(alphabet);
@@ -70,6 +76,7 @@ function LessonContextProvider$Initializer({ row, alphabet, letters, children }:
 
     const chargeProgressPoints = () => {
         setFlawless(_ => false);
+        setAward(_ => 1);
         setProgressPoints(_ => Math.max(0, _ - maxCombo + combo));
     }
 
@@ -121,10 +128,12 @@ function LessonContextProvider$Initializer({ row, alphabet, letters, children }:
     }, [state]);
 
     useEffect(() => {
-        if (goalReached) {
-            setState(_ => 'showing results');
-            setPoints(points + (flawless ? 2 : 1));
+        if (!goalReached) {
+            return;
         }
+
+        setPoints(points + award);
+        setState(_ => 'showing results');
     }, [goalReached]);
 
     if (alphabet === undefined ||
@@ -145,7 +154,11 @@ function LessonContextProvider$Initializer({ row, alphabet, letters, children }:
         goalReached,
         particle,
         wasCompleted,
+        completed,
         needsIntroduction,
+        row,
+        points,
+        setPoints,
 
         options,
         setOptions,
@@ -159,6 +172,8 @@ function LessonContextProvider$Initializer({ row, alphabet, letters, children }:
         setFlawless,
         correctLetter,
         setCorrectLetter,
+        award,
+        setAward,
 
         start,
         check,

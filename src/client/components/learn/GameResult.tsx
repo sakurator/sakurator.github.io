@@ -16,6 +16,11 @@ export default function GameResult() {
         state,
         goalReached,
         flawless,
+        wasCompleted,
+        points,
+        setState,
+        row,
+        award,
     } = useLessonContext();
 
     const [completedShown, setCompletedShown] = useState<boolean>(false);
@@ -45,8 +50,15 @@ export default function GameResult() {
             setFlawlessShown(_ => false);
         }
 
-        navigate('/');
+        await sleep(960);
+
+        if (points < row.petalsToComplete && points + award >= row.petalsToComplete) {
+            setState(_ => 'showing congratulations');
+        } else {
+            navigate('/');
+        }
     }, [goalReached]);
+
 
     if (state !== 'showing results') {
         return;

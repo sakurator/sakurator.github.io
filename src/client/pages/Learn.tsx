@@ -1,3 +1,4 @@
+import Congratulations from "@client/components/learn/Congratulations.js";
 import Game from "@client/components/learn/Game.js";
 import GameResult from "@client/components/learn/GameResult.js";
 import Introduction from "@client/components/learn/Introduction.js";
@@ -28,6 +29,7 @@ export default function Learn() {
                 <Introduction />
                 <Game />
                 <GameResult />
+                <Congratulations />
             </LessonContextProvider>
         </>
     );

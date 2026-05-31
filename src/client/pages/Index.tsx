@@ -3,10 +3,12 @@ import Menu from "@client/components/index/menu/Menu.js";
 import RowsContainer from "@client/components/index/menu/RowsContainer.js";
 import Logo from "@client/components/Logo.js";
 import PreloadAudios from "@client/components/PreloadAudios.js";
+import "@sass/pages/Index.sass";
+import clsx from "clsx";
 
 export default function Index() {
     return (
-        <>
+        <div className={clsx("index")}>
             <PreloadAudios audioNames={[
                 'click',
                 'hover',
@@ -18,6 +20,6 @@ export default function Index() {
                 <AlphabetSwitch />
                 <RowsContainer />
             </Menu>
-        </>
+        </div>
     );
 }
