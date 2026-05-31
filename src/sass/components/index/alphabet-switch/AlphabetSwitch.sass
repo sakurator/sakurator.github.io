@@ -4,10 +4,11 @@
 @use 'ease'
 
 
-$backfire: 1rem
+$backfire: 1.2rem
 $squash: 1.03
 $height-fix: 1%
 $duration: 500ms
+$slider-fraction: 10
 
 @keyframes alphabet-switch-panel__bounce-left
     10%
@@ -41,9 +42,9 @@ $duration: 500ms
     justify-content: center
     column-gap: 1rem
     &.hiragana
-        animation: alphabet-switch-panel__bounce-left ease.$ease-bouncy 500ms
+        animation: alphabet-switch-panel__bounce-left ease.$ease-bouncy $duration math.div($duration, $slider-fraction)
     &.katakana
-        animation: alphabet-switch-panel__bounce-right ease.$ease-bouncy 500ms
+        animation: alphabet-switch-panel__bounce-right ease.$ease-bouncy $duration math.div($duration, $slider-fraction)
 
 #alphabet-switch
     position: relative
@@ -60,13 +61,13 @@ $duration: 500ms
 #alphabet-switch-checkbox:not(:checked) + #alphabet-switch-slider
     background-color: colors.$sakura
     &:before
-        animation: alphabet-switch-slider__squish-a ease.$ease-bouncy 200ms
+        animation: alphabet-switch-slider__squish-a ease.$ease-bouncy math.div(2 * $duration, $slider-fraction)
 
 #alphabet-switch-checkbox:checked + #alphabet-switch-slider
     background-color: colors.$turquoise
     &:before
         transform: translateX(3rem)
-        animation: alphabet-switch-slider__squish-b ease.$ease-bouncy 200ms
+        animation: alphabet-switch-slider__squish-b ease.$ease-bouncy math.div(2 * $duration, $slider-fraction)
 
 #alphabet-switch-slider
     position: absolute
