@@ -65,7 +65,7 @@ function LessonContextProvider$Initializer({ row, alphabet, letters, children }:
     const [award, setAward] = useState<number>(2);
     const maxCombo = 9;
     const optionCount = 4;
-    const goal = 21;
+    const goal = 500;
     const percent = progressPoints / goal * 100;
     const goalReached = percent >= 100;
     const particle = getAlphabetParticleName(alphabet);
