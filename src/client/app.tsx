@@ -6,22 +6,25 @@ import Index from '@client/pages/Index.js';
 import "@sass/App.sass";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Learn from './pages/Learn.js';
+import { SulfaContextProvider } from './contexts/sulfa.js';
 
 const queryClient = new QueryClient();
 
 function App() {
     return (
         <>
-            <QueryClientProvider client={queryClient}>
-                <NuqsAdapter>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path="/" element={<Index />} />
-                            <Route path="/learn/:alphabet/:slug" element={<Learn />} />
-                        </Routes>
-                    </BrowserRouter>
-                </NuqsAdapter>
-            </QueryClientProvider>
+            <SulfaContextProvider>
+                <QueryClientProvider client={queryClient}>
+                    <NuqsAdapter>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="/" element={<Index />} />
+                                <Route path="/learn/:alphabet/:slug" element={<Learn />} />
+                            </Routes>
+                        </BrowserRouter>
+                    </NuqsAdapter>
+                </QueryClientProvider>
+            </SulfaContextProvider>
         </>
     );
 }
