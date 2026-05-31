@@ -4,10 +4,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"start": "set NODE_ENV=production && node ./bin/www",
-		"start-nodemon": "set NODE_ENV=development && nodemon --watch src --ext js,json,pug,sass ./bin/www",
-		"compile-stylesheets": "sass --watch src/sass/app.sass public/stylesheets/app.css",
-		"dev": "npx tsx ./build.ts"
+		"dev": "npx tsx ./bin/build.ts"
 	},
 	"dependencies": {
 		"@prisma/adapter-mariadb": "^7.8.0",

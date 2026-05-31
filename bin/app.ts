@@ -15,7 +15,7 @@ const app: Express = express();
 
 setup(app, {
     set: {
-        "views": __dirname,
+        "views": join(__dirname, "..", "src", "pug"),
         "view engine": "pug",
         "port": 3000,
     },
@@ -32,7 +32,7 @@ setup(app, {
         }),
     },
     use: {
-        "/static": _static(join(__dirname, "public")),
+        "/static": _static(join(__dirname, "..", "public")),
     },
     middlewares: [
         logger('dev'),

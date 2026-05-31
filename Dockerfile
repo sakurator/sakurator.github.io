@@ -6,9 +6,7 @@ COPY prisma/ prisma/
 COPY prisma.config.ts .
 COPY public/ public/
 COPY src/ src/
-COPY views/ views/
 COPY ./entrypoint.sh .
-COPY app.ts .
-COPY node.ts .
+COPY bin/ bin/
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["npx", "tsx", "node.ts"]
+CMD ["npx", "tsx", "bin/node.ts"]
