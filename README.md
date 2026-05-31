@@ -4,7 +4,7 @@
 **Sakurator** is a fast and fun way to learn Japanese alphabets - both hiragana and katakana for absolute free!
 Website tracks your progress locally, and gives you medals each letter set is complete.
 
-> [!INFO]
+> [!NOTE]
 > Sakurator is not publicly available, but it can be self-hosted
 
 ## Requirements
@@ -76,7 +76,7 @@ Feeling brave? Have an idea? Saw a bug?
 You can help! If you know React or Express.js, welcome to contributors!
 Clone the repo, implement, and pull request!
 
-> [!INFO]
+> [!NOTE]
 > Please, follow the commit message, and coding styles!
 > Thank you so much!
 
