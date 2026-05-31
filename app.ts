@@ -15,7 +15,7 @@ const app: Express = express();
 
 setup(app, {
     set: {
-        "views": join(__dirname, "views"),
+        "views": __dirname,
         "view engine": "pug",
         "port": 3000,
     },
