@@ -3,3 +3,4 @@
 /compose.override.yaml
 /prisma/migrations
 /public/app.js
+/.idea
